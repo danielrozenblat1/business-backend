@@ -11,16 +11,23 @@ if(!req.body.phone){
     error.statusCode=401;
 throw error;
 }
+if(!req.body.hasLandingPage){
+    const error=new Error("משהו השתבש, בדוק את האינטרנט שלך");
+    error.statusCode=401;
+throw error;
+}
 
 const name=req.body.name;
 const phone=req.body.phone;
 const email=req.body.email
+const landing =req.body.hasLandingPage
 
 
 const lead = new Lead({
     name: name,
     phone: phone,
     email: email,
+    hasLandingPage:landing
   });
   await lead.save()
   console.log("saved")

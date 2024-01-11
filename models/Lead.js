@@ -12,6 +12,10 @@ const leadSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+  },
+  hasLandingPage: {
+    type: String,
+    required: false,
   }
 });
 module.exports=mongoose.model('lead',leadSchema)
