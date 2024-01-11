@@ -1,4 +1,6 @@
-const Lead=require("../models/Lead")
+const Lead=require("../models/Lead");
+const fs = require('fs');
+const nodemailer = require('nodemailer');
 exports.gettingLead=async(req,res,next)=>{
 
 if(!req.body.name){
@@ -27,5 +29,40 @@ const lead = new Lead({
   });
   await lead.save()
   console.log("saved")
+
+if(req.body.hasLandingPage){
+    try {
+    
+        // Send email with attached PDF
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'danielroz12345@gmail.com',
+                pass: 'ueuyqcbzlumqgcui'
+            }
+        });
+    
+        const mailOptions = {
+          from: "danielroz12345@gmail.com",
+          to: email,
+          subject: 'מתנה חינמית דניאל רוזנלט',
+          text: "אני מאוד שמח שבחרת לקחת את המושכות לידיים והתעניינת בבניית דפי נחיתה וביצירת בידול עסקי ומקצועי שייצג אותך כראוי !",
+          attachments: [
+            {
+              filename: 'מדריך חינמי - דניאל רוזנבלט.pdf',
+              content: fs.createReadStream('./מדריך חינמי - דניאל רוזנבלט.pdf'),
+            },
+          ],
+        };
+    
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent with attached PDF');
+    
+        return res.status(201).json({ message: "We got the info, email sent with PDF" });
+      } catch (error) {
+        console.error('Error saving lead or sending email:', error.message);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+    };
   return res.status(201).json({message:"we got the info"})
 }

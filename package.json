@@ -10,11 +10,12 @@
     "heroku": "^8.7.1",
     "mongoose": "^8.0.1",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.8",
     "nodemon": "^3.0.1",
     "socket.io": "^4.7.2"
   },
   "engines": {
-    "node":"18.14.2"
+    "node": "18.14.2"
   },
   "scripts": {
     "start": "node app.js",
