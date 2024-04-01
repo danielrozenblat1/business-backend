@@ -45,12 +45,12 @@ if(req.body.hasLandingPage){
         const mailOptions = {
           from: "danielroz12345@gmail.com",
           to: email,
-          subject: 'מתנה חינמית דניאל רוזנלט',
+          subject: 'מתנה חינמית דניאל רוזנבלט',
           text: "אני מאוד שמח שבחרת לקחת את המושכות לידיים והתעניינת בבניית דפי נחיתה וביצירת בידול עסקי ומקצועי שייצג אותך כראוי !",
           attachments: [
             {
-              filename: 'מדריך חינמי - דניאל רוזנבלט.pdf',
-              content: fs.createReadStream('./מדריך חינמי - דניאל רוזנבלט.pdf'),
+              filename: 'משחקי מוחות.pdf',
+              content: fs.createReadStream('./משחקי מוחות.pdf'),
             },
           ],
         };
